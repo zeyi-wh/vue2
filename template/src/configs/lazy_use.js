@@ -8,6 +8,9 @@ import {
   Input,
   message,
   notification,
+  Form,
+  Icon,
+  TreeSelect,
 } from "ant-design-vue";
 
 // Vue.use(Collapse);
@@ -23,7 +26,7 @@ Vue.use(Button);
 // Vue.use(Select);
 // Vue.use(Calendar);
 // Vue.use(Card)
-// Vue.use(Form);
+Vue.use(Form);
 Vue.use(FormModel);
 // Vue.use(Row);
 // Vue.use(Col);
@@ -31,8 +34,8 @@ Vue.use(FormModel);
 // Vue.use(Table);
 // Vue.use(Tabs);
 // Vue.use(Tree);
-// Vue.use(TreeSelect);
-// Vue.use(Icon);
+Vue.use(TreeSelect);
+Vue.use(Icon);
 // Vue.use(Badge)
 // Vue.use(Popover);
 // Vue.use(Dropdown);
