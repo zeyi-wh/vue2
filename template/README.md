@@ -56,7 +56,7 @@ yarn build
 ### 时间处理和精度处理
 1. 在template里需要处理时间格式，这部分内容在GlobalFilter.js里
 ```
-<span>{{"2020:11:01" | filterDate}}</span>    ----会被转成2020-11-01
+<span>/{/{"2020:11:01" | filterDate/}/}</span>    ----会被转成2020-11-01
 ```
 2. 在javascript里处理，这部分在工具函数utils/util.js里
 ```
