@@ -22,7 +22,7 @@ new Vue({
 }).$mount("#app");
 {{/if_eq}}
 
-{{#if_eq projectType “qiankun”}}
+{{#if_eq projectType "qiankun"}}
 let instance = null;
 function render(props = {}) {
   console.log(props);
