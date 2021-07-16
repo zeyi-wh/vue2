@@ -1,7 +1,9 @@
 import Vue from "vue";
 import moment from "moment";
+{{#if_eq projectType "normal"}}
 import "moment/locale/zh-cn";
 moment.locale("zh-cn");
+{{/if_eq}}
 
 import { numberUtils } from "@/utils/util";
 
