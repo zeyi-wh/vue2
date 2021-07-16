@@ -3,7 +3,6 @@ const path = require("path");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 // gzip资源匹配正则
 const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
-
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -46,6 +45,15 @@ module.exports = {
   },
   productionSourceMap: false,
   configureWebpack: {
+    {{#if_eq build “qiankun”}}
+    output: {
+      // 把子应用打包成 umd 库格式
+      library: `${name}-[name]`,
+      // library: `lb_basic_management`,
+      libraryTarget: "umd",
+      jsonpFunction: `webpackJsonp_${name}`,
+    },
+    {{/if_eq}}
     plugins: webpackPlugins,
     resolve: {
       alias: {
@@ -61,6 +69,15 @@ module.exports = {
   devServer: {
     port: 8001,
     disableHostCheck: true,
+    {{#if_eq build “qiankun”}}
+    overlay: {
+      warning: false,
+      errors: false,
+    },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+    {{/if_eq}}
   },
   chainWebpack: (config) => {
     config.resolve.alias
@@ -69,5 +86,32 @@ module.exports = {
       .set("components", resolve("src/components"))
       .set("views", resolve("src/views"))
       .set("api", resolve("src/api"));
+    // externals
+    {{#if_eq build “qiankun”}}
+    config.externals({
+      vue: "Vue",
+      "vue-router": "VueRouter",
+      vuex: "Vuex",
+      axios: "axios",
+      "ant-design-vue": "antd",
+      lodash: "_",
+      moment: "moment",
+      "@sentry/browser": "Sentry",
+      wangeditor: "wangEditor",
+      "@ctrl/tinycolor": "tinycolor",
+      qs: "Qs",
+      "big.js": "Big",
+    });
+
+    config.plugin("html").tap((args) => {
+      if (process.env.WEBPACK_DEV_SERVER === "true") {
+        // 如果是本地自测，则使用 index-local.html
+        const template = args[0].template;
+        args[0].template = template.replace("index.html", "index-local.html"); // '/Users/username/proj/app/templates/index.html'
+      }
+
+      return args;
+    });
+    {{/if_eq}}
   },
 };
