@@ -1,5 +1,10 @@
 import Vue from "vue";
+{{#if_eq projectType "normal"}}
 import cloneDeep from "lodash/cloneDeep";
+{{/if_eq}}
+{{#if_eq projectType "qiankun"}}
+import { cloneDeep } from "lodash";
+{{/if_eq}}
 import axios from "axios";
 import qs from "qs";
 
