@@ -45,7 +45,7 @@ module.exports = {
   },
   productionSourceMap: false,
   configureWebpack: {
-    {{#if_eq build “qiankun”}}
+    {{#if_eq projectType “qiankun”}}
     output: {
       // 把子应用打包成 umd 库格式
       library: `${name}-[name]`,
@@ -69,7 +69,7 @@ module.exports = {
   devServer: {
     port: 8001,
     disableHostCheck: true,
-    {{#if_eq build “qiankun”}}
+    {{#if_eq projectType “qiankun”}}
     overlay: {
       warning: false,
       errors: false,
@@ -87,7 +87,7 @@ module.exports = {
       .set("views", resolve("src/views"))
       .set("api", resolve("src/api"));
     // externals
-    {{#if_eq build “qiankun”}}
+    {{#if_eq projectType “qiankun”}}
     config.externals({
       vue: "Vue",
       "vue-router": "VueRouter",

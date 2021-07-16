@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    {{#if_eq build “qiankun”}}
+    {{#if_eq projectType “qiankun”}}
     <link rel="stylesheet" href="https://fs-static.medcloud.cn/cdn/antdV.css">
     {{/if_eq}}
   </head>
@@ -16,7 +16,7 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    {{#if_eq build “qiankun”}}
+    {{#if_eq projectType “qiankun”}}
     <!-- 引入 vue、vuex、vue-router -->
     <script src="https://fs-static.medcloud.cn/cdn/commonlib_vue.js"></script>
     <!-- 引入 antdV -->
