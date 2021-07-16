@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-{{#if_eq projectType “normal”}}
+{{#if_eq projectType "normal"}}
 import "./configs/lazy_use";
 {{/if_eq}}
 import "./store/observable.js";
@@ -14,7 +14,7 @@ Vue.prototype.$EventBus = new Vue();
 Vue.config.productionTip = false;
 Vue.mixin(golbalMixin);
 
-{{#if_eq projectType “normal”}}
+{{#if_eq projectType "normal"}}
 new Vue({
   store,
   router,
