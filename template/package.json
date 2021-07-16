@@ -1,7 +1,8 @@
 {
-  "name": "lb_lite_emr",
-  "version": "0.1.0",
+  "name": "{{name}}",
+  "version": "1.0.0",
   "private": true,
+  "description": "{{ description }}",
   "scripts": {
     "start": "node ./bin/index uat && cross-env NODE_ENV=development vue-cli-service serve",
     "build": "node ./bin/index && cross-env NODE_ENV=production vue-cli-service build",

@@ -6,22 +6,27 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    {{#if_eq build “qiankun”}}
+    <!-- 引入 antdV css样式 -->
     <link rel="stylesheet" href="https://fs-static.medcloud.cn/cdn/antdV.css">
-    {{/if_eq}}
   </head>
-  <body>
+  <body data-size-theme="large">
     <noscript>
-        <strong><%= htmlWebpackPlugin.options.title %></strong>
+      <strong><%= htmlWebpackPlugin.options.title %></strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
-    {{#if_eq build “qiankun”}}
+
+    <!-- 引入 lodash、moment 等 -->
+    <!-- 参考 https://wiki.medcloud.cn/pages/viewpage.action?pageId=66715676 -->
+    <script src="https://fs-static.medcloud.cn/cdn/commonlib3.js"></script>
+    <script src="https://fs-static.medcloud.cn/cdn/commonlib5.js"></script>
+    <script src="https://fs-static.medcloud.cn/cdn/commonlib6.js"></script>
+    <script src="https://fs-static.medcloud.cn/cdn/commonlib7.js"></script>
+
     <!-- 引入 vue、vuex、vue-router -->
     <script src="https://fs-static.medcloud.cn/cdn/commonlib_vue.js"></script>
     <!-- 引入 antdV -->
     <script src="https://fs-static.medcloud.cn/cdn/antdV.js"></script>
+    
     <!-- built files will be auto injected -->
-    {{/if_eq}}
   </body>
 </html>
