@@ -14,6 +14,25 @@ yarn start //和之前的项目保持一致
 ```
 yarn build
 ```
+## qiankun项目须知
+### 在main项目中添加：
+```
+// src/microApp/apps.js
+// apps中添加item
+  {
+    name: '{{name}}',
+    container: qiankunAppSelector,
+    activeRule: '/{{name}}',
+    entry: '/{{name}}/,
+    props: { shared },
+  },
+```
+
+### 告诉运维并发邮件的信息：
+1. 项目的gitlab（https://gitlab.medcloud.cn/SCRM-Frontend/{{name}}）
+2. jenkins配置参考项目（lb_module_basic_management）
+3. jenkins job的名称{{name}}
+   ps:发邮件给当前负责的运维
 
 ## 目录结构
 
@@ -76,8 +95,7 @@ export const LiteIcon = Icon.createFromIconfontCN({
 });
 // 修改scriptUrl(取自iconfont)
 ```
-
-### 开发时按需加载，注意事项：
+### 开发时按需加载，注意事项（普通项目）：
 #### https://github.com/vueComponent/ant-design-vue/issues/325
 1. antd vue按需加载
 ```
@@ -107,8 +125,7 @@ import "echarts/lib/chart/bar"; // 引用柱状图
 import "echarts/lib/component/title"; ...
 ```
 
-
-5. API接口使用说明
+API接口使用说明
 #### api接口相关的文件放在`src/api`这个目录下 项目中需要使用的api接口时 先在api目录下建一个js文件，这个文件里引用`APIInterceptors`这个接口拦截器，然后定义相关的接口名称，
 #### 比如定义了一个`home.js`的文件（这个文件可以根据项目需求来，比如按照页面或者模块来定义）
 ```
