@@ -16,6 +16,8 @@ yarn build
 ```
 {{#if_eq projectType "qiankun"}}
 ## qiankun项目须知
+### 本地调试
+公共接口目前不兼容ip形式的本地调试，请用localhost
 
 ### 公共弹窗类型须知
 
