@@ -103,22 +103,22 @@ export default {
     },
     async getHierarchies() {
       const { memberCode: memberName, username } = this.form;
-      {{#if_eq projectType "normal"}}
+      if (!memberName || !username) return;
+      {{#if_eq projectType "qiankun"}}
       const data = await requestHierarchies({
         memberName,
         username,
       });
-      if (!memberName || !username) return;
       {{/if_eq}}
 
 
-      {{#if_eq projectType "qiankun"}}
+      {{#if_eq projectType "normal"}}
       const { code, data = [] } = await requestHierarchies({
         memberName,
         username,
       });
-      {{/if_eq}}
       if (code !== 0) return;
+      {{/if_eq}}
       const hierarchiesTreeData = data.map((item) =>
         this.formatToTreeData(item)
       );
@@ -132,7 +132,6 @@ export default {
         {{#if_eq projectType "qiankun"}}
           const data = await login(this.form);
         {{/if_eq}}
-
 
         {{#if_eq projectType "normal"}}
           const { code, data } = await login(this.form);
