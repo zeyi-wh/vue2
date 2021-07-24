@@ -103,11 +103,19 @@ export default {
     },
     async getHierarchies() {
       const { memberCode: memberName, username } = this.form;
+      {{#if_eq projectType "normal"}}
+      const data = await requestHierarchies({
+        memberName,
+        username,
+      });
       if (!memberName || !username) return;
+      {{/if_eq}}
+      {{#if_eq projectType "qiankun"}}
       const { code, data = [] } = await requestHierarchies({
         memberName,
         username,
       });
+      {{/if_eq}}
       if (code !== 0) return;
       const hierarchiesTreeData = data.map((item) =>
         this.formatToTreeData(item)
@@ -119,8 +127,13 @@ export default {
       e.preventDefault();
       this.$refs.form.validate(async (valid) => {
         if (!valid) return;
+        {{#if_eq projectType "qiankun"}}
+        const data = await login(this.form);
+        {{/if_eq}}
+        {{#if_eq projectType "normal"}}
         const { code, data } = await login(this.form);
         if (code !== 0) return;
+        {{/if_eq}}
         this.setStorage(data);
         this.$message.success("登录成功", 1, () => {
           const url = this.redirectUrl || "/";

@@ -37,20 +37,20 @@ module.exports = {
       when: 'isNotTest',
       type: 'string',
       required: true,
-      message: 'Project/gitlab/jenkins name',
+      message: '项目的名称（如：lb_module_followUP),该字段很重要',
     },
     description: {
       when: 'isNotTest',
       type: 'string',
       required: false,
-      message: 'Project description',
+      message: '项目描述',
       default: 'A Vue.js project',
     },
     projectType: {
       when: 'isNotTest',
       type: 'list',
       message:
-        'create a qiankun sub-application or normal application',
+        '选择创建项目的类型，qiankun子应用或普通的应用',
       choices: [
         {
           name: 'qiankun',
@@ -63,6 +63,12 @@ module.exports = {
           short: 'normal',
         },
       ],
+    },
+    commonModalOrDrawer: {
+      when: 'isNotTest && projectType === qiankun',
+      type: 'confirm',
+      message:
+        '此应用为公共弹窗项目',
     },
     autoInstall: {
       when: 'isNotTest',
@@ -85,6 +91,9 @@ module.exports = {
   },
   filters: {
     'src/configs/lazy_use.js': "projectType === 'normal'",
+    'src/api/API.util.js': "projectType === 'normal'",
+    'src/api/APIInterceptors.js': "projectType === 'normal'",
+    'src/api/HTTPRequestUtil.js': "projectType === 'qiankun'",
     'public/index-local.html': "projectType === 'qiankun'",
   },
   complete: function(data, { chalk }) {

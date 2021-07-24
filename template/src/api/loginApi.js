@@ -1,3 +1,4 @@
+{{#if_eq projectType "normal"}}
 import { SCRM_HTTP } from "@/api/APIInterceptors";
 
 export function login(data) {
@@ -10,3 +11,16 @@ export function requestHierarchies(params) {
     params,
   });
 }
+{{/if_eq}}
+{{#if_eq projectType "qiankun"}}
+import HTTPRequestUtil from "@/api/HTTPRequestUtil";
+
+export function login(data) {
+  return HTTPRequestUtil.lbPost("/api/scrm/auth/login-general", data, {
+    "content-type": "application/x-www-form-urlencoded",
+  });
+}
+export function requestHierarchies(data) {
+  return HTTPRequestUtil.lbGet("/api/scrm/institution/hierarchies", data);
+}
+{{/if_eq}}
