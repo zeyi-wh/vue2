@@ -110,6 +110,8 @@ export default {
       });
       if (!memberName || !username) return;
       {{/if_eq}}
+
+
       {{#if_eq projectType "qiankun"}}
       const { code, data = [] } = await requestHierarchies({
         memberName,
@@ -128,11 +130,13 @@ export default {
       this.$refs.form.validate(async (valid) => {
         if (!valid) return;
         {{#if_eq projectType "qiankun"}}
-        const data = await login(this.form);
+          const data = await login(this.form);
         {{/if_eq}}
+
+
         {{#if_eq projectType "normal"}}
-        const { code, data } = await login(this.form);
-        if (code !== 0) return;
+          const { code, data } = await login(this.form);
+          if (code !== 0) return;
         {{/if_eq}}
         this.setStorage(data);
         this.$message.success("登录成功", 1, () => {
