@@ -16,6 +16,13 @@ yarn build
 ```
 {{#if_eq projectType "qiankun"}}
 ## qiankun项目须知
+
+{{#commonModalOrDrawer}}
+### 弹窗模式
+利用了内存路由，让应用不在关注url上的路由地址，从而达到让一个路由加载n多的qiankun子项目
+qiankun页面级别的加载降为组件级别的加载
+{{/commonModalOrDrawer}}
+
 ### 在main项目中添加：
 ```
 // src/microApp/apps.js
