@@ -1,4 +1,7 @@
 const webpack = require("webpack");
+{{#if_eq projectType "qiankun"}}
+const configs = require("./src/configs/env.config");
+{{/if_eq}}
 const path = require("path");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 // gzip资源匹配正则
