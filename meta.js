@@ -64,12 +64,6 @@ module.exports = {
         },
       ],
     },
-    commonModalOrDrawer: {
-      when: 'isNotTest && projectType === qiankun',
-      type: 'confirm',
-      message:
-        '此应用为公共弹窗项目',
-    },
     autoInstall: {
       when: 'isNotTest',
       type: 'list',
