@@ -108,6 +108,7 @@ module.exports = {
         // 如果是本地自测，则使用 index-local.html
         const template = args[0].template;
         args[0].template = template.replace("index.html", "index-local.html"); // '/Users/username/proj/app/templates/index.html'
+        args[0].envhost = configs.DOMAIN;
       }
 
       return args;
