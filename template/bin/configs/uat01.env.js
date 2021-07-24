@@ -5,4 +5,10 @@ const config = {
   DOMAIN: "http://uat01-tower.laoganma.fun",
 };
 
+{{#if_eq projectType "normal"}}
 export default config;
+{{/if_eq}}
+
+{{#if_eq projectType "qiankun"}}
+module.exports = config
+{{/if_eq}}
