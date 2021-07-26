@@ -53,7 +53,9 @@
 <script>
 import { login, requestHierarchies } from "@/api/loginApi";
 import StorageHelper from "@/utils/StorageHelper";
+{{#if_eq projectType "normal"}}
 import { STORAGE_KEY } from "@/utils/const";
+{{/if_eq}}
 
 export default {
   name: "Login.vue",
@@ -146,6 +148,7 @@ export default {
     },
 
     setStorage(data) {
+      {{#if_eq projectType "normal"}}
       const {
         _token,
         staff: { staffId },
@@ -173,6 +176,16 @@ export default {
       StorageHelper.set(STORAGE_KEY.CURRENT_ORG_INFO, currentOrgInfo);
       StorageHelper.set(STORAGE_KEY.USER_INFO, staff);
       StorageHelper.set(STORAGE_KEY.MEDICAL_INSTITUTION, medicalInstitution);
+      {{/if_eq}}
+      {{#if_eq projectType "qiankun"}}
+      StorageHelper.set(
+          "MEDICAL_INSTITUTION_ID",
+          data?.medicalInstitution?.medicalInstitutionId
+      );
+      StorageHelper.set("TOKEN", data?._token);
+      StorageHelper.set("USER_ID", data?.staff?.staffId);
+      {{/if_eq}}
+
     },
   },
 };
