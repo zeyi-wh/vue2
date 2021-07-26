@@ -19,6 +19,9 @@ yarn build
 ### 本地调试
 公共接口目前不兼容ip形式的本地调试，请用localhost
 
+### 枚举类
+qiankun子应用可以通过window.enumsMedCloud来获取枚举信息
+
 ### 公共弹窗类型须知
 
 - 和qiankun子应用一样，就是一个普通的子应用项目。
