@@ -42,9 +42,15 @@ module.exports = {
     description: {
       when: 'isNotTest',
       type: 'string',
-      required: false,
+      required: true,
       message: '项目描述',
       default: 'A Vue.js project',
+    },
+    author: {
+      when: 'isNotTest',
+      type: 'string',
+      required: true,
+      message: '主开发',
     },
     projectType: {
       when: 'isNotTest',

@@ -45,10 +45,38 @@ qiankun子应用可以通过window.enumsMedCloud来获取枚举信息
 ```
 
 ### 告诉运维并发邮件的信息：
-1. 项目的gitlab（https://gitlab.medcloud.cn/SCRM-Frontend/{{name}}）
-2. jenkins配置参考项目（lb_module_basic_management）
-3. jenkins job的名称{{name}}
-   ps:发邮件给当前负责的运维
+
+##### 新服务资源申请：
+
+job名称：{{name}}
+
+环境：dev uat pre prod
+
+仓库地址：https://gitlab.medcloud.cn/SCRM-Frontend/{{name}}
+
+环境路由：
+
+- http://dev-tower.laoganma.fun/sub_app/{{name}}
+- http://uat-tower.laoganma.fun/sub_app/{{name}}
+- https://pre-power.medcloud.cn/sub_app/{{name}}
+- https://power.medcloud.cn/sub_app/{{name}}
+
+打包命令：
+
+```
+yarn install
+yarn run build 
+```
+
+申请人：{{author}}
+
+负责人：李陆启
+
+申请日期：yyyy/mm/dd
+
+
+
+邮件抄送："SaaS产品技术部"<saas@medcloud.cn>;"李陆启"<luqi.li@medcloud.cn>;
 
 {{/if_eq}}
 
