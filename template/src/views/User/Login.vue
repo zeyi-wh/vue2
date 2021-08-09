@@ -184,6 +184,7 @@ export default {
       );
       StorageHelper.set("TOKEN", data?._token);
       StorageHelper.set("USER_ID", data?.staff?.staffId);
+      StorageHelper.set("MEDICAL_INSTITUTION", data?.medicalInstitution);
       {{/if_eq}}
 
     },
