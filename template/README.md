@@ -1,5 +1,9 @@
 # {{name}}
 
+## 注意
+eslint有修改，建完项目后第一时间build一下，然后运行命令
+eslint --fix --ext .js,.vue src
+
 ## 安装依赖
 ```
 yarn
