@@ -50,6 +50,9 @@ qiankun子应用可以通过window.enumsMedCloud来获取枚举信息
 
 ### 告诉运维并发邮件的信息：
 
+##### 特别注意
+在项目中建立dev uat pre master分支
+
 ##### 新服务资源申请：
 
 job名称：{{name}}
