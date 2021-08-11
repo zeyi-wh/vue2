@@ -43,7 +43,7 @@ qiankun子应用可以通过window.enumsMedCloud来获取枚举信息
     name: '{{name}}',
     container: qiankunAppSelector,
     activeRule: '/{{name}}',
-    entry: '/{{name}}/,
+    entry: '/sub_app/{{name}}/',
     props: { shared },
   },
 ```
