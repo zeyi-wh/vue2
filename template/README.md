@@ -83,7 +83,7 @@ yarn run build
 
 
 
-邮件抄送："SaaS产品技术部"<saas@medcloud.cn>;"李陆启"<luqi.li@medcloud.cn>;
+邮件抄送："SaaS产品技术部"<saas@medcloud.cn>;"李陆启"<luqi.li@medcloud.cn>;"刘伟义"<weiyi.liu@medcloud.cn>;
 
 {{/if_eq}}
 
