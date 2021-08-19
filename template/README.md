@@ -23,7 +23,6 @@ yarn build
 ### 本地调试
 公共接口目前不兼容ip形式的本地调试，请用localhost
 
-{{projectType}}
 
 ### 枚举类
 qiankun子应用可以通过window.enumsMedCloud来获取枚举信息
@@ -61,7 +60,7 @@ job名称：{{name}}
 
 环境：dev uat pre prod
 
-仓库地址：https://gitlab.medcloud.cn/SCRM-Frontend/{{name}}
+仓库地址：https://gitlab.medcloud.cn/{{gitLabGroup}}/{{name}}
 
 环境路由：
 
@@ -137,6 +136,13 @@ yarn run build
 console.log(timeUtils.getNow()); // 与moment转换相关的都可以放在这里供大家使用
 ```
 
+{{#if_eq projectType "qiankun"}}
+### API请求说明
+#### 我们统一使用壳项目提供的axios封装
+#### 具体使用方法参考登录页面
+{{/if_eq}}
+
+{{#if_eq projectType "normal"}}
 ### Icon使用方案
 1. 我们采用按需加载默认Icon的方式，会丢失部分默认Icon，如果发现有丢失，参考按需加载的方案进行补齐
 2. 大多数Icon来自于fontIcon自定义,使用方法
@@ -151,7 +157,7 @@ export const LiteIcon = Icon.createFromIconfontCN({
 // 修改scriptUrl(取自iconfont)
 ```
 
-{{#if_eq projectType "normal"}}
+
 ### 开发时按需加载，注意事项（普通项目）：
 #### https://github.com/vueComponent/ant-design-vue/issues/325
 1. antd vue按需加载
@@ -181,7 +187,7 @@ import echarts from "echarts/lib/echarts"; // 引用主文件
 import "echarts/lib/chart/bar"; // 引用柱状图
 import "echarts/lib/component/title"; ...
 ```
-{{/if_eq}}
+
 API接口使用说明
 #### api接口相关的文件放在`src/api`这个目录下 项目中需要使用的api接口时 先在api目录下建一个js文件，这个文件里引用`APIInterceptors`这个接口拦截器，然后定义相关的接口名称，
 #### 比如定义了一个`home.js`的文件（这个文件可以根据项目需求来，比如按照页面或者模块来定义）
@@ -214,4 +220,4 @@ export default {
 
 
 ```
-
+{{/if_eq}}
