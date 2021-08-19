@@ -23,6 +23,8 @@ yarn build
 ### 本地调试
 公共接口目前不兼容ip形式的本地调试，请用localhost
 
+{{projectType}}
+
 ### 枚举类
 qiankun子应用可以通过window.enumsMedCloud来获取枚举信息
 
