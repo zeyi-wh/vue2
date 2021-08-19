@@ -31,7 +31,7 @@ module.exports = {
       return templateVersion
     },
   },
-  
+
   prompts: {
     name: {
       when: 'isNotTest',
@@ -67,6 +67,24 @@ module.exports = {
           name: 'normal',
           value: 'normal',
           short: 'normal',
+        },
+      ],
+    },
+    gitLabGroup: {
+      when: 'isNotTest',
+      type: 'list',
+      message:
+        '选择项目gitlab的分组',
+      choices: [
+        {
+          name: 'SCRM-Frontend',
+          value: 'SCRM-Frontend',
+          short: 'SCRM-Frontend',
+        },
+        {
+          name: 'his-frontend',
+          value: 'his-frontend',
+          short: 'his-frontend',
         },
       ],
     },
