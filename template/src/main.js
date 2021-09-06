@@ -19,7 +19,7 @@ new Vue({
   store,
   router,
   render: (h) => h(App),
-}).$mount("#app");
+}).$mount("#{{name}}");
 {{/if_eq}}
 
 {{#if_eq projectType "qiankun"}}
@@ -30,7 +30,7 @@ function render(props = {}) {
     store,
     router,
     render: (h) => h(App),
-  }).$mount("#app");
+  }).$mount("#{{name}}");
 }
 
 if (window.__POWERED_BY_QIANKUN__) {
