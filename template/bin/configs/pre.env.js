@@ -1,8 +1,8 @@
 /* eslint-disable */
 const config = {
-  SCRM_API_HOST: "http://pre-tower.medcloud.cn",
-  HIS_API_HOST: "http://pre-tower.medcloud.cn",
-  DOMAIN: "//pre-power.medcloud.cn",
+  SCRM_API_HOST: "//pre-tower.medcloud.cn",
+  HIS_API_HOST: "//pre-tower.medcloud.cn",
+  DOMAIN: "//pre-tower.medcloud.cn",
 };
 
 {{#if_eq projectType "normal"}}
