@@ -15,7 +15,8 @@ export default class HTTPRequestUtil {
   }
 
   static lbPost(url, data, headers = {}, extraConfig) {
-    return this.lbRequest(url, data, "POST", headers, extraConfig);
+    const head = Object.assign({}, headers,{'full-response' : true})
+    return this.lbRequest(url, data, "POST", head, extraConfig);
   }
 
   static lbPut(url, data, headers = {}, extraConfig) {
