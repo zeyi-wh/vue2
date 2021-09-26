@@ -107,7 +107,7 @@ module.exports = {
     });
 
     config.plugin("html").tap((args) => {
-      if (process.env.WEBPACK_DEV_SERVER === "true") {
+      if (process.env.NODE_ENV === 'development') {
         // 如果是本地自测，则使用 index-local.html
         const template = args[0].template;
         args[0].template = template.replace("index.html", "index-local.html"); // '/Users/username/proj/app/templates/index.html'
