@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import { Empty } from "ant-design-vue";
+import { Empty } from 'ant-design-vue'
 export default {
-  name: "index",
-  beforeCreate() {
-    this.emptyImage = Empty.PRESENTED_IMAGE_SIMPLE;
-  },
-};
+  name: 'index',
+  beforeCreate () {
+    this.emptyImage = Empty.PRESENTED_IMAGE_SIMPLE
+  }
+}
 </script>
 
 <style scoped>

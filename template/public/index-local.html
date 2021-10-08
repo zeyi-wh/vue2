@@ -8,29 +8,46 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
     <!-- 引入 antdV css样式 -->
     <link rel="stylesheet" href="https://fs-static.medcloud.cn/cdn/antdV.css">
+    <style>
+        body, p {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !important;
+        }
+
+        :root{
+            --PC: #089EBA;
+            --FBI: #3AB9D0;
+            --BG: #EDFCFF;
+            --LA: #B5EBF5;
+        }
+    </style>
   </head>
   <body data-size-theme="large">
     <noscript>
       <strong><%= htmlWebpackPlugin.options.title %></strong>
     </noscript>
-    <div id="{{name}}"></div>
+    <div id="subapp-wrap-container"></div>
 
     <!-- 引入 lodash、moment 等 -->
     <!-- 参考 https://wiki.medcloud.cn/pages/viewpage.action?pageId=66715676 -->
+    <!-- 引入 react、react-dom、moment、lodash -->
     <script src="https://fs-static.medcloud.cn/cdn/commonlib3.js"></script>
+
+    <!-- 引入 react-router-dom、redux、react-redux、axios、prop-types、react-dnd、react-dnd-html5-backend -->
     <script src="https://fs-static.medcloud.cn/cdn/commonlib5.js"></script>
-    <script src="https://fs-static.medcloud.cn/cdn/commonlib6.js"></script>
-    <script src="https://fs-static.medcloud.cn/cdn/commonlib7.js"></script>
+
+    <!-- 引入 tinycolor、History、qiankun、wangeditor -->
+<!--    <script src="https://fs-static.medcloud.cn/cdn/commonlib7.js"></script>-->
 
     <!-- 引入 vue、vuex、vue-router -->
     <script src="https://fs-static.medcloud.cn/cdn/commonlib_vue.js"></script>
+
     <!-- 引入 antdV -->
-    <script src="https://fs-static.medcloud.cn/cdn/antdV.js"></script>
-    <!-- 引入axios模块 -->
+    <script src="https://fs-static.medcloud.cn/cdn/antd.min.rename.js"></script>
+
+    <!-- 引入axios封装模块 -->
     <script src="<%= htmlWebpackPlugin.options.envhost %>/js/request_tool.js"></script>
-
     <script src="<%= htmlWebpackPlugin.options.envhost %>/enumsMedCloud/lib.enums.js"></script>
-
-    <!-- built files will be auto injected -->
   </body>
 </html>

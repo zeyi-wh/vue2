@@ -1,25 +1,27 @@
+// store 模版
+
 const state = {
-  count: 0,
-};
+  count: 0
+}
 
 const getters = {
-  getCount(state) {
-    return state.count;
-  },
-};
+  getCount (state) {
+    return state.count
+  }
+}
 
 const mutations = {
-  setCount(state, val) {
-    state.count = val;
-  },
-};
+  setCount (state, val) {
+    state.count = val
+  }
+}
 
-const actions = {};
+const actions = {}
 
 export default {
   namespaced: true,
   state,
   getters,
   mutations,
-  actions,
-};
+  actions
+}
