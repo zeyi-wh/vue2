@@ -44,7 +44,7 @@
       </a-form-model-item>
       <a-form-model-item>
         <a-button type="primary" html-type="submit" class="login-form-button">
-          登录1
+          登录
         </a-button>
       </a-form-model-item>
     </a-form-model>
@@ -118,12 +118,19 @@ export default {
       e.preventDefault()
       this.$refs.form.validate(async (valid) => {
         if (!valid) return
-        const data = await login(this.form)
-
-        this.setStorage(data)
-        this.$message.success('登录成功', 1, () => {
-          const url = this.redirectUrl || '/'
-          this.$router.replace(url)
+        login(this.form).then(res => {
+          this.setStorage(res.data)
+          if (res.code === 0) {
+            this.$message.success('登录成功', 1, () => {
+              const url = this.redirectUrl || '/'
+              this.$router.replace(url)
+            })
+          } else {
+            Promise.reject('登录出错')
+          }
+        }).catch(err => {
+          /* eslint-disable */
+          console.log(err)
         })
       })
     },
