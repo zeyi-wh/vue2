@@ -3,6 +3,7 @@
  * headers = { 'content-type': 'application/x-www-form-urlencoded'} 会覆盖headers里的配置
  * extraConfig { 'full-response': true } 接口将返回全量的信息
  */
+import qs from 'qs'
 
 export default class HTTPRequestUtil {
   static getLbRequest () {

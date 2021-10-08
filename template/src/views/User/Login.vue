@@ -125,12 +125,11 @@ export default {
               const url = this.redirectUrl || '/'
               this.$router.replace(url)
             })
-          } else {
-            Promise.reject('登录出错')
           }
         }).catch(err => {
           /* eslint-disable */
           console.log(err)
+          this.$message.error(err.message || err)
         })
       })
     },
