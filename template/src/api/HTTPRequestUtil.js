@@ -20,6 +20,11 @@ export default class HTTPRequestUtil {
 
   static lbPost (url, data, headers = {}, extraConfig) {
     const head = Object.assign({}, headers, { 'full-response': true })
+    if (head['content-type'] === 'application/x-www-form-urlencoded') {
+      data = qs.stringify(data, {
+        arrayFormat: 'comma'
+      })
+    }
     return this.lbRequest(url, data, 'POST', head, extraConfig)
   }
 
