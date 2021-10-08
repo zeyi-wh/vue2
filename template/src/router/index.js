@@ -1,75 +1,49 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import BasicLayout from "@/layouts/BasicLayout";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import BasicLayout from '@/layouts/BasicLayout'
+import Workspace from '@/views/Workspace'
 
-// import { STORAGE_KEY } from "@/utils/const";
-// import StorageHelper from "@/utils/StorageHelper";
-
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/user",
-    component: { render: (h) => h("router-view") },
-    children: [
-      {
-        path: "/user/login",
-        name: "login",
-        component: () =>
-          import(/* webpackChunkName: "user" */ "../views/User/Login"),
-      },
-      {
-        path: "/user/register",
-        name: "register",
-        component: () =>
-          import(/* webpackChunkName: "user" */ "../views/User/Register"),
-      },
-    ],
+    path: '/login',
+    name: 'login',
+    component: () =>
+      import(/* webpackChunkName: "login" */ '../views/User/Login')
   },
   {
-    path: "/",
+    path: '/',
     component: BasicLayout,
     children: [
       {
-        path: "/",
-        redirect: "/workspace",
+        path: '/',
+        redirect: '/workspace'
       },
       {
-        path: "/workspace",
-        name: "workspace",
-        component: () =>
-          import(/* webpackChunkName: "user" */ "../views/Workspace"),
-      },
-    ],
+        path: '/workspace',
+        name: 'workspace',
+        component: Workspace
+      }
+    ]
   },
   {
-    path: "*",
-    component: { render: (h) => h("div", null, "404") },
-  },
-];
+    path: '*',
+    component: { render: (h) => h('div', null, '404') }
+  }
+]
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
-  routes,
-});
+  routes
+})
 
 router.beforeEach((to, from, next) => {
-  next();
+  next()
   // todo 路由拦截
-  // const userInfo = StorageHelper.get("currentOrgInfo") || {};
-  // const token = userInfo[STORAGE_KEY._TOKEN];
-  // if (token) {
-  //   next();
-  // } else {
-  //   if (process.env.NODE_ENV !== "development") {
-  //     window.location.href = "/login";
-  //   } else {
-  //     next();
-  //   }
-  // }
-});
+})
 
-router.afterEach(() => {});
+router.afterEach(() => {})
 
-export default router;
+export default router

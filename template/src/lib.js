@@ -1,16 +1,11 @@
+/**
+ * 向外暴露模块通常需要自定义render方法(根据实际场景需要会有较大调整）
+ * 根据实际需要引入store或其他文件
+ */
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import './store/observable.js'
-import './globalStyle.less'
-import './utils/GlobalFilter'
-import { golbalMixin } from '@/utils/GlobalMixin'
-
-Vue.prototype.$EventBus = new Vue()
+import SomeLib from 'views/SomeLib/SomeLib'
 
 Vue.config.productionTip = false
-Vue.mixin(golbalMixin)
 
 let instance = null
 
@@ -22,15 +17,8 @@ function render (props = {}) {
   wrapper.appendChild(appContainer)
 
   instance = new Vue({
-    store,
-    router,
-    render: (h) => h(App)
+    render: (h) => h(SomeLib)
   }).$mount(appContainer)
-}
-
-// 独立运行时 __SUB_APP__为壳项目定义的变量,表示作为子应用加载
-if (!window.__SUB_APP__) {
-  render()
 }
 
 // 微前端对外暴露的3个方法

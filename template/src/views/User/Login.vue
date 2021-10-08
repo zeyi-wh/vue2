@@ -44,152 +44,101 @@
       </a-form-model-item>
       <a-form-model-item>
         <a-button type="primary" html-type="submit" class="login-form-button">
-          登录
+          登录1
         </a-button>
       </a-form-model-item>
     </a-form-model>
   </div>
 </template>
 <script>
-import { login, requestHierarchies } from "@/api/loginApi";
-import StorageHelper from "@/utils/StorageHelper";
-{{#if_eq projectType "normal"}}
-import { STORAGE_KEY } from "@/utils/const";
-{{/if_eq}}
+import { login, requestHierarchies } from '@/api/loginApi'
+import StorageHelper from '@/utils/StorageHelper'
 
 export default {
-  name: "Login.vue",
-  data() {
+  name: 'Login.vue',
+  data () {
     return {
       hierarchiesTreeData: [],
       form: {
-        memberCode: "9527",
-        username: "9527",
-        password: "333333",
-        medicalInstitutionId: 1830,
+        memberCode: '9527',
+        username: '9527',
+        password: '333333',
+        medicalInstitutionId: 1830
       },
-      redirectUrl: "",
-    };
+      redirectUrl: ''
+    }
   },
   watch: {
-    "form.memberCode"() {
-      this.getHierarchies();
+    'form.memberCode' () {
+      this.getHierarchies()
     },
-    "form.username"() {
-      this.getHierarchies();
-    },
+    'form.username' () {
+      this.getHierarchies()
+    }
   },
-  created() {
-    this.redirectUrl = this.$route.query.redirectUrl || "";
-    this.getHierarchies();
+  created () {
+    this.redirectUrl = this.$route.query.redirectUrl || ''
+    this.getHierarchies()
   },
-  beforeCreate() {
+  beforeCreate () {
     this.form = this.$form.createForm(this, {
-      name: "normal_login",
-    });
+      name: 'normal_login'
+    })
   },
   methods: {
-    formatToTreeData(item) {
+    formatToTreeData (item) {
       const {
         medicalInstitutionSimpleCode: label,
         medicalInstitutionId: value,
-        children = [],
-      } = item;
+        children = []
+      } = item
       return {
         label,
         value,
         children: children.map((childrenItem) =>
           this.formatToTreeData(childrenItem)
-        ),
-      };
+        )
+      }
     },
-    async getHierarchies() {
-      const { memberCode: memberName, username } = this.form;
-      if (!memberName || !username) return;
-      {{#if_eq projectType "qiankun"}}
+    async getHierarchies () {
+      const { memberCode: memberName, username } = this.form
+      if (!memberName || !username) return
       const data = await requestHierarchies({
         memberName,
-        username,
-      });
-      {{/if_eq}}
+        username
+      })
 
-
-      {{#if_eq projectType "normal"}}
-      const { code, data = [] } = await requestHierarchies({
-        memberName,
-        username,
-      });
-      if (code !== 0) return;
-      {{/if_eq}}
       const hierarchiesTreeData = data.map((item) =>
         this.formatToTreeData(item)
-      );
-      this.form.medicalInstitutionId = hierarchiesTreeData[0]?.value;
-      this.hierarchiesTreeData = hierarchiesTreeData;
+      )
+      this.form.medicalInstitutionId = hierarchiesTreeData[0]?.value
+      this.hierarchiesTreeData = hierarchiesTreeData
     },
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit (e) {
+      e.preventDefault()
       this.$refs.form.validate(async (valid) => {
-        if (!valid) return;
-        {{#if_eq projectType "qiankun"}}
-          const data = await login(this.form);
-        {{/if_eq}}
+        if (!valid) return
+        const data = await login(this.form)
 
-        {{#if_eq projectType "normal"}}
-          const { code, data } = await login(this.form);
-          if (code !== 0) return;
-        {{/if_eq}}
-        this.setStorage(data);
-        this.$message.success("登录成功", 1, () => {
-          const url = this.redirectUrl || "/";
-          this.$router.replace(url);
-        });
-      });
+        this.setStorage(data)
+        this.$message.success('登录成功', 1, () => {
+          const url = this.redirectUrl || '/'
+          this.$router.replace(url)
+        })
+      })
     },
 
-    setStorage(data) {
-      {{#if_eq projectType "normal"}}
-      const {
-        _token,
-        staff: { staffId },
-        staff,
-        medicalInstitution: {
-          medicalInstitutionId,
-          medicalInstitutionType,
-          topParentId,
-          tenantId,
-        },
-        medicalInstitution,
-      } = data;
-      const currentOrgInfo = {
-        _cmtId: topParentId,
-        _cmtType: medicalInstitutionType,
-        _lang: "zh_CN",
-        _mtId: medicalInstitutionId,
-        _s: 11,
-        _t: 1,
-        _tenantId: tenantId,
-        _token,
-        _uid: staffId,
-        _ut: 1,
-      };
-      StorageHelper.set(STORAGE_KEY.CURRENT_ORG_INFO, currentOrgInfo);
-      StorageHelper.set(STORAGE_KEY.USER_INFO, staff);
-      StorageHelper.set(STORAGE_KEY.MEDICAL_INSTITUTION, medicalInstitution);
-      {{/if_eq}}
-      {{#if_eq projectType "qiankun"}}
+    setStorage (data) {
       StorageHelper.set(
-          "MEDICAL_INSTITUTION_ID",
+        'MEDICAL_INSTITUTION_ID',
           data?.medicalInstitution?.medicalInstitutionId
-      );
-      StorageHelper.set("TOKEN", data?._token);
-      StorageHelper.set("USER_ID", data?.staff?.staffId);
-      StorageHelper.set("MEDICAL_INSTITUTION", data?.medicalInstitution);
-      {{/if_eq}}
-
-    },
-  },
-};
+      )
+      StorageHelper.set('TOKEN', data?._token)
+      StorageHelper.set('USER_ID', data?.staff?.staffId)
+      StorageHelper.set('MEDICAL_INSTITUTION', data?.medicalInstitution)
+    }
+  }
+}
 </script>
 <style lang="less" scoped="scoped">
 .login-wrap {

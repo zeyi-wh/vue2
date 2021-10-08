@@ -2,7 +2,7 @@
   "name": "{{name}}",
   "version": "1.0.0",
   "private": true,
-  "description": "{{ description }}",
+  "description": "{{description}}",
   "scripts": {
     "start": "node ./bin/index uat && cross-env NODE_ENV=development vue-cli-service serve",
     "build": "node ./bin/index && cross-env NODE_ENV=production vue-cli-service build",
@@ -30,8 +30,8 @@
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-import": "^1.13.3",
-    "cross-env": "^7.0.3",
     "compression-webpack-plugin": "5.0.2",
+    "cross-env": "^7.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
@@ -39,8 +39,8 @@
     "less-loader": "^5.0.0",
     "lint-staged": "^9.5.0",
     "prettier": "^2.2.1",
-    "vue-template-compiler": "^2.6.11",
     "uglifyjs-webpack-plugin": "^2.2.0",
+    "vue-template-compiler": "^2.6.11",
     "webpack-cli": "^4.6.0"
   },
   "gitHooks": {

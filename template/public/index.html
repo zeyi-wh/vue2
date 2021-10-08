@@ -6,22 +6,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    {{#if_eq projectType "qiankun"}}
     <link rel="stylesheet" href="https://fs-static.medcloud.cn/cdn/antdV.css">
-    {{/if_eq}}
   </head>
   <body>
     <noscript>
         <strong><%= htmlWebpackPlugin.options.title %></strong>
     </noscript>
-    <div id="{{name}}"></div>
+    <div id="subapp-wrap-container"></div>
     <!-- built files will be auto injected -->
-    {{#if_eq projectType "qiankun"}}
     <!-- 引入 vue、vuex、vue-router -->
     <script src="https://fs-static.medcloud.cn/cdn/commonlib_vue.js"></script>
     <!-- 引入 antdV -->
     <script src="https://fs-static.medcloud.cn/cdn/antdV.js"></script>
     <!-- built files will be auto injected -->
-    {{/if_eq}}
   </body>
 </html>

@@ -37,7 +37,7 @@ module.exports = {
       when: 'isNotTest',
       type: 'string',
       required: true,
-      message: '项目的名称（如：lb_module_followUP),该字段很重要',
+      message: '项目的名称（如：lb_module_bill),该字段很重要',
     },
     description: {
       when: 'isNotTest',
@@ -50,26 +50,26 @@ module.exports = {
       when: 'isNotTest',
       type: 'string',
       required: true,
-      message: '主开发',
+      message: '开发人员',
     },
-    projectType: {
-      when: 'isNotTest',
-      type: 'list',
-      message:
-        '选择创建项目的类型，qiankun子应用或普通的应用',
-      choices: [
-        {
-          name: 'qiankun',
-          value: 'qiankun',
-          short: 'qiankun',
-        },
-        {
-          name: 'normal',
-          value: 'normal',
-          short: 'normal',
-        },
-      ],
-    },
+    // projectType: {
+    //   when: 'isNotTest',
+    //   type: 'list',
+    //   message:
+    //     '选择创建项目的类型，qiankun子应用或普通的应用',
+    //   choices: [
+    //     {
+    //       name: 'qiankun',
+    //       value: 'qiankun',
+    //       short: 'qiankun',
+    //     },
+    //     {
+    //       name: 'normal',
+    //       value: 'normal',
+    //       short: 'normal',
+    //     },
+    //   ],
+    // },
     gitLabGroup: {
       when: 'isNotTest',
       type: 'list',
@@ -86,6 +86,11 @@ module.exports = {
           value: 'his-frontend',
           short: 'his-frontend',
         },
+        {
+          name: 'Frontend-WECOM',
+          value: 'Frontend-WECOM',
+          short: 'Frontend-WECOM',
+        }
       ],
     },
     autoInstall: {
@@ -108,11 +113,11 @@ module.exports = {
     },
   },
   filters: {
-    'src/configs/lazy_use.js': "projectType === 'normal'",
-    'src/api/API.util.js': "projectType === 'normal'",
-    'src/api/APIInterceptors.js': "projectType === 'normal'",
-    'src/api/HTTPRequestUtil.js': "projectType === 'qiankun'",
-    'public/index-local.html': "projectType === 'qiankun'",
+    // 'src/configs/lazy_use.js': "projectType === 'normal'",
+    // 'src/api/API.util.js': "projectType === 'normal'",
+    // 'src/api/APIInterceptors.js': "projectType === 'normal'",
+    // 'src/api/HTTPRequestUtil.js': "projectType === 'qiankun'",
+    // 'public/index-local.html': "projectType === 'qiankun'",
   },
   complete: function(data, { chalk }) {
     const green = chalk.green
