@@ -26,7 +26,8 @@ function render (props = {}) {
     store,
     router,
     render: (h) => h(App)
-  }).$mount(appContainer)
+  })
+  instance.$mount(appContainer)
 }
 
 // 独立运行时 __SUB_APP__为壳项目定义的变量,表示作为子应用加载
