@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import BasicLayout from '@/layouts/BasicLayout'
-import Workspace from '@/views/Workspace'
 
 Vue.use(VueRouter)
 
@@ -23,7 +22,8 @@ const routes = [
       {
         path: '/workspace',
         name: 'workspace',
-        component: Workspace
+        component: () =>
+          import(/* webpackChunkName: "Workspace" */ '../views/Workspace')
       }
     ]
   },

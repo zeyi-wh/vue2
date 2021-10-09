@@ -6,6 +6,7 @@ import './store/observable.js'
 import './globalStyle.less'
 import './utils/GlobalFilter'
 import { golbalMixin } from '@/utils/GlobalMixin'
+const envConfig = require('../src/configs/env.config')
 
 Vue.prototype.$EventBus = new Vue()
 
@@ -31,6 +32,9 @@ function render (props = {}) {
 // 独立运行时 __SUB_APP__为壳项目定义的变量,表示作为子应用加载
 if (!window.__SUB_APP__) {
   render()
+} else {
+  // eslint-disable-next-line
+  __webpack_public_path__ = envConfig.DOMAIN + '/sub_app/{{name}}/'
 }
 
 // 微前端对外暴露的3个方法
