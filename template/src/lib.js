@@ -18,7 +18,8 @@ function render (props = {}) {
 
   instance = new Vue({
     render: (h) => h(SomeLib)
-  }).$mount(appContainer)
+  })
+  instance.$mount(appContainer)
 }
 
 // 微前端对外暴露的3个方法
