@@ -71,7 +71,7 @@ yarn run build
 申请日期：yyyy/mm/dd
 
 
-
+收件人："关伟俊"<weijun.guan@medcloud.cn>;
 邮件抄送："SaaS产品技术部"<saas@medcloud.cn>;"李陆启"<luqi.li@medcloud.cn>;"刘伟义"<weiyi.liu@medcloud.cn>;
 
 

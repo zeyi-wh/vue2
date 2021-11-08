@@ -1,6 +1,6 @@
 /* eslint-disable */
 const config = {
-  DOMAIN: "//pre-tower.medcloud.cn",
+  DOMAIN: "https://pre-tower.medcloud.cn",
 };
 
 
