@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import './store/observable.js'
 import './utils/GlobalFilter'
+import './utils/changeContainer'
 import { golbalMixin } from '@/utils/GlobalMixin'
 const envConfig = require('../src/configs/env.config')
 
