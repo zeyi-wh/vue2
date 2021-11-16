@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="lbvue">
     <a-config-provider :locale="zhCN">
       <router-view />
     </a-config-provider>

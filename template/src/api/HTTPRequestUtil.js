@@ -7,7 +7,7 @@ import qs from 'qs'
 
 export default class HTTPRequestUtil {
   static getLbRequest () {
-    return window?.lb_main_request_tool?.scrmRequest
+    return window?.lb_global_tools?.lbRequest
   }
 
   static lbRequest (url, data, method, headers = {}, extraConfig = null) {

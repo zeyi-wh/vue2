@@ -3,7 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './store/observable.js'
-import './globalStyle.less'
 import './utils/GlobalFilter'
 import { golbalMixin } from '@/utils/GlobalMixin'
 const envConfig = require('../src/configs/env.config')

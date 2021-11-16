@@ -7,7 +7,7 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <!-- 引入 antdV css样式 -->
-    <link rel="stylesheet" href="https://fs-static.medcloud.cn/cdn/antdV.css">
+    <link rel="stylesheet" href="https://fs-static.medcloud.cn/cdn/antdV-scope.css">
     <style>
         body, p {
             margin: 0;
@@ -47,7 +47,7 @@
     <script src="https://fs-static.medcloud.cn/cdn/antd.min.rename.js"></script>
 
     <!-- 引入axios封装模块 -->
-    <script src="<%= htmlWebpackPlugin.options.envhost %>/js/request_tool.js"></script>
+    <script src="<%= htmlWebpackPlugin.options.envhost %>/lb_components_vue2/lb_global_tools.js"></script>
     <script src="<%= htmlWebpackPlugin.options.envhost %>/enumsMedCloud/lib.enums.js"></script>
   </body>
 </html>
