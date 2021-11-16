@@ -4,7 +4,6 @@
 import moment from 'moment'
 import { numberUtils } from '@/utils/util'
 
-
 export const golbalMixin = {
   methods: {
     // 全局的inputNumber输入框 千分位显示
