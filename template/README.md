@@ -1,4 +1,8 @@
 # {{name}}
+## 特别注意
+antd vue样式需要使用lbvue的类名包裹
+在使用antd弹窗类组件时请加上:getContainer="false" 属性,否则样式会丢失
+
 ## 安装依赖
 ```
 yarn
