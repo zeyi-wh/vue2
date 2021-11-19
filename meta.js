@@ -31,7 +31,7 @@ module.exports = {
       return templateVersion
     },
     filterName(name) {
-      return name.replace('_','-')
+      return name.replace(/_/g,'-')
     }
   },
 
