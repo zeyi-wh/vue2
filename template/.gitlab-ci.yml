@@ -68,7 +68,7 @@ deploy_dev:
   script:
     - 'sh /data/fenfa_sshkey.sh'
     - 'ssh root@1.117.3.195 "hostname"'
-    - 'scp -rp ./tmp/dist/* root@1.117.3.195:/data/dev-web-file/sub_app/lb_module_marketing/'
+    - 'scp -rp ./tmp/dist/* root@1.117.3.195:/data/dev-web-file/sub_app/{{name}}/'
     - 'echo $IMAGE_TAG'
     - 'git clone $CI_SCRIPT_URL'
     - 'pwd'
@@ -97,7 +97,7 @@ deploy_uat:
   script:
     - 'sh /data/fenfa_sshkey.sh'
     - 'ssh root@1.117.3.195 "hostname"'
-    - 'scp -rp ./tmp/dist/* root@1.117.3.195:/data-uat/uat-web-file/sub_app/lb_module_marketing/'
+    - 'scp -rp ./tmp/dist/* root@1.117.3.195:/data-uat/uat-web-file/sub_app/{{name}}/'
     - 'echo $IMAGE_TAG'
     - 'git clone $CI_SCRIPT_URL'
     - 'pwd'
@@ -126,7 +126,7 @@ deploy_pre:
   script:
     - 'sh /data/aliyun.sh'
     - 'ssh root@172.19.244.62 "hostname"'
-    - 'scp -rp ./tmp/dist/* root@172.19.244.62:/data/pre-web-scrm/sub_app/lb_module_marketing/'
+    - 'scp -rp ./tmp/dist/* root@172.19.244.62:/data/pre-web-scrm/sub_app/{{name}}/'
     - 'echo $IMAGE_TAG'
     - 'git clone $CI_SCRIPT_URL'
     - 'pwd'
@@ -155,7 +155,7 @@ deploy_prod:
   script:
     - 'sh /data/aliyun.sh'
     - 'ssh root@172.19.244.62 "hostname"'
-    - 'scp -rp ./tmp/dist/* root@172.19.244.62:/data/prod-web-scrm/sub_app/lb_module_marketing/'
+    - 'scp -rp ./tmp/dist/* root@172.19.244.62:/data/prod-web-scrm/sub_app/{{name}}/'
     - 'echo $IMAGE_TAG'
     - 'git clone $CI_SCRIPT_URL'
     - 'pwd'
