@@ -1,0 +1,163 @@
+variables:
+  RIGISTRY_URL: "registry.cn-shanghai.aliyuncs.com"
+  RIGISTRY_PROJECT: "zeyi-aliyun-docker-repo"
+  CI_SCRIPT_URL: "http://cicd:mF48Jk41qvnRbNFf@gitlab.medcloud.cn/DevOps/cicd-scripts.git"
+
+stages:
+  - build
+  - deploy
+
+
+before_script:
+  - 'export PATH=$PATH:/usr/bin'
+  - export ENV=${ENV:-""}
+  - 'DEPLOYMENT_CONTAINER_ALIYUN="$RIGISTRY_URL/$RIGISTRY_PROJECT/$CI_PROJECT_NAME"'
+  - 'DEPLOYMENT_CONTAINER_ALIYUN=$(echo $DEPLOYMENT_CONTAINER_ALIYUN|tr "[:upper:]" "[:lower:]")'
+  - 'export IMAGE_TAG_ALIYUN=${DEPLOYMENT_CONTAINER_ALIYUN}'
+  - 'export IMAGE_TAG=$IMAGE_TAG_ALIYUN:"${CI_COMMIT_SHA:0:8}"_$CI_COMMIT_REF_NAME'
+
+
+build:
+  stage: build
+  tags:
+    - shell
+  only:
+    - dev
+    - uat
+    - pre
+    - master
+  when: manual
+  allow_failure: false
+  artifacts:
+    paths:
+      - tmp/
+  script:
+    - case $CI_COMMIT_REF_NAME in dev) ENV="dev";; uat) ENV="uat";; pre) ENV="pre";; master) ENV="prod";; *) ENV="prod";; esac;
+    - 'echo $ENV'
+    - 'yarn config set registry http://registry.medcloud.cn/'
+    - 'yarn config set cache-folder ~/.cache'
+    - 'yarn install --prefer-offline'
+    - 'yarn run build'
+    - 'mkdir -p ./tmp/'
+    - 'ls -al'
+    - 'cp -r ./dist ./tmp/'
+    - 'docker build -t $IMAGE_TAG .'
+    - 'docker push $IMAGE_TAG'
+    - 'echo "The build is sucessful,The image is : $IMAGE_TAG"'
+
+
+
+deploy_dev:
+  stage: deploy
+  tags:
+    - shell
+  only:
+    - dev
+  when: on_success
+  dependencies:
+    - build
+  allow_failure: false
+  artifacts:
+    paths:
+      - tmp/
+  variables:
+    SERVICE_NAME: "dev-fe-{{filterName name}}"
+    NAMESPACE: "medcloud-dev"
+    REPLICAS: "1"
+    PORT: "80"
+  script:
+    - 'sh /data/fenfa_sshkey.sh'
+    - 'ssh root@1.117.3.195 "hostname"'
+    - 'scp -rp ./tmp/dist/* root@1.117.3.195:/data/dev-web-file/sub_app/lb_module_marketing/'
+    - 'echo $IMAGE_TAG'
+    - 'git clone $CI_SCRIPT_URL'
+    - 'pwd'
+    - 'ls'
+    - './cicd-scripts/front.sh'
+
+
+deploy_uat:
+  stage: deploy
+  tags:
+    - shell
+  only:
+    - uat
+  when: on_success
+  dependencies:
+    - build
+  allow_failure: false
+  artifacts:
+    paths:
+      - tmp/
+  variables:
+    SERVICE_NAME: "uat-fe-{{filterName name}}"
+    NAMESPACE: "medcloud-test"
+    REPLICAS: "1"
+    PORT: "80"
+  script:
+    - 'sh /data/fenfa_sshkey.sh'
+    - 'ssh root@1.117.3.195 "hostname"'
+    - 'scp -rp ./tmp/dist/* root@1.117.3.195:/data-uat/uat-web-file/sub_app/lb_module_marketing/'
+    - 'echo $IMAGE_TAG'
+    - 'git clone $CI_SCRIPT_URL'
+    - 'pwd'
+    - 'ls'
+    - './cicd-scripts/front.sh'
+
+
+deploy_pre:
+  stage: deploy
+  tags:
+    - shell
+  only:
+    - pre
+  when: on_success
+  dependencies:
+    - build
+  allow_failure: false
+  artifacts:
+    paths:
+      - tmp/
+  variables:
+    SERVICE_NAME: "web-scrm-{{filterName name}}"
+    NAMESPACE: "medcloud-pre"
+    REPLICAS: "1"
+    PORT: "80"
+  script:
+    - 'sh /data/aliyun.sh'
+    - 'ssh root@172.19.244.62 "hostname"'
+    - 'scp -rp ./tmp/dist/* root@172.19.244.62:/data/pre-web-scrm/sub_app/lb_module_marketing/'
+    - 'echo $IMAGE_TAG'
+    - 'git clone $CI_SCRIPT_URL'
+    - 'pwd'
+    - 'ls'
+    - './cicd-scripts/front.sh'
+
+
+deploy_prod:
+  stage: deploy
+  tags:
+    - shell
+  only:
+    - master
+  when: manual
+  dependencies:
+    - build
+  allow_failure: false
+  artifacts:
+    paths:
+      - tmp/
+  variables:
+    SERVICE_NAME: "web-scrm-{{filterName name}}"
+    NAMESPACE: "medcloud-prod"
+    REPLICAS: "2"
+    PORT: "80"
+  script:
+    - 'sh /data/aliyun.sh'
+    - 'ssh root@172.19.244.62 "hostname"'
+    - 'scp -rp ./tmp/dist/* root@172.19.244.62:/data/prod-web-scrm/sub_app/lb_module_marketing/'
+    - 'echo $IMAGE_TAG'
+    - 'git clone $CI_SCRIPT_URL'
+    - 'pwd'
+    - 'ls'
+    - './cicd-scripts/front.sh'

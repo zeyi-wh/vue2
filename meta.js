@@ -30,6 +30,9 @@ module.exports = {
     template_version() {
       return templateVersion
     },
+    filterName(name) {
+      return name.replace('_','-')
+    }
   },
 
   prompts: {
